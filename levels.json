@@ -1,6 +1,6 @@
 {
   "start": {
-    "gold": 1800,
+    "gold": 150,
     "life": 20
   },
   "path": [
@@ -44,7 +44,7 @@
       "label": "Cañón (100)",
       "cost": 100,
       "range": 100,
-      "damage": 35,
+      "damage": 100,
       "rate": 1.5,
       "strategy": "strongest",
       "shape": "cannon",
@@ -54,7 +54,7 @@
       "label": "Mago de área (120)",
       "cost": 120,
       "range": 90,
-      "damage": 8,
+      "damage": 60,
       "rate": 1,
       "strategy": "area",
       "shape": "crystal",
