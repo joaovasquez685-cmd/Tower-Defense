@@ -1,0 +1,26 @@
+:root{--bg:#0e1424;--panel:#17203a;--line:#2b3a5c;--ink:#e8ecf7;--mute:#93a0c0;--acc:#ffc45c}
+*{box-sizing:border-box}
+body{margin:0;padding:12px;min-height:100vh;display:grid;place-items:center;background:var(--bg);color:var(--ink);font:15px/1.4 system-ui,sans-serif}
+main{width:min(100%,820px)}
+#hud{display:flex;gap:8px;margin-bottom:8px}
+#hud span{flex:1;padding:6px 10px;background:var(--panel);border:1px solid var(--line);border-radius:8px;color:var(--mute)}
+#hud b{display:block;font-size:20px;color:var(--ink)}
+#stage{position:relative;border:2px solid var(--line);border-radius:10px;overflow:hidden;transition:box-shadow .15s}
+#stage.hit{box-shadow:inset 0 0 0 5px #f56565}
+canvas{display:block;width:100%;height:auto;cursor:crosshair}
+#overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:16px;text-align:center;overflow:auto;background:#0e1424ee}
+[hidden]{display:none!important}
+button,input{font:inherit;padding:8px 12px;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:8px}
+button{cursor:pointer}
+button:hover{border-color:var(--acc)}
+button.on,#btnStart{background:var(--acc);color:#1b1500;border-color:var(--acc);font-weight:600}
+button:focus-visible,input:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+#oBtns,#towers,#abilities{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+#oRank{margin:0;padding-left:24px;text-align:left;color:var(--mute);max-height:45%;overflow:auto}
+#panel{display:flex;flex-direction:column;align-items:center;gap:8px;margin-top:8px}
+#msg{margin:0;min-height:1.4em;color:var(--mute);text-align:center}
+@media (prefers-reduced-motion:reduce){#stage{transition:none}}
+#board{margin-top:14px;padding:12px 16px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+#board h2{margin:0 0 6px;font-size:17px}
+#liveRank{margin:0;padding-left:24px;color:var(--mute)}
+#liveRank li:first-child{color:var(--acc);font-weight:600}
