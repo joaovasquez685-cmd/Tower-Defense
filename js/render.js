@@ -93,7 +93,7 @@ export class Renderer {
         c.shadowBlur = 0; c.beginPath(); c.arc(f.x2, f.y2, (0.12 - f.t) * 90, 0, 7); c.stroke(); }
     }
     c.globalAlpha = 1;
-    if (g.selected && g.mouse && g.state.playing) {
+    if (g.selected && g.mouse && g.state.canBuild) {
       const { x, y } = g.mouse, ok = g.canPlace(x, y), d = g.cfg.towers[g.selected];
       c.fillStyle = ok ? "#48bb7830" : "#f5656530"; c.strokeStyle = ok ? "#48bb78" : "#f56565"; c.lineWidth = 1.5;
       c.beginPath(); c.arc(x, y, d.range, 0, 7); c.fill(); c.stroke();
