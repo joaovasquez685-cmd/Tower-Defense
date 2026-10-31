@@ -408,6 +408,11 @@
       ]
     }
   ],
+  "random": {
+    "min": 0.6,
+    "max": 1.4
+  },
+  "prepTime": 10,
   "score": {
     "kill": 10,
     "level": 100,
