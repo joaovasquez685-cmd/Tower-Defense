@@ -37,8 +37,14 @@ export class Game {
     this.setState(boss ? new BossState() : new WaveState());
   }
   buildSpawnQueue() {
-    const q = []; let t = 0;
-    for (const [type, n, gap] of this.level.waves) { for (let i = 0; i < n; i++) { q.push({ t, type }); t += gap; } t += 2; }
+    const q = []; let t = 0; const r = this.cfg.random;
+    for (const [type, n, gap] of this.level.waves) {
+      const count = this.cfg.enemies[type].boss
+        ? n
+        : Math.max(1, Math.round(n * (r.min + Math.random() * (r.max - r.min))));
+      for (let i = 0; i < count; i++) { q.push({ t, type }); t += gap; }
+      t += 2;
+    }
     return q;
   }
   spawn(type) { this.enemies.push(this.enemyF.create(type, this.level)); }
