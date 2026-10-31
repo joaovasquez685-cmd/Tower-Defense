@@ -16,18 +16,29 @@ export class MenuState extends State {
 }
 class PlayingState extends State {
   playing = true;
-  click(g, x, y) { g.placeTower(x, y); }
+  canBuild = false;
+  click(g, x, y) {
+    if (this.canBuild) g.placeTower(x, y);
+    else g.ui.msg("No puedes construir durante la oleada.");
+  }
   update(g, dt) { g.updateWorld(dt); }
 }
 export class PreparationState extends PlayingState {
-  canStart = true;
-  enter(g) {
-    g.ui.msg(`Nivel ${g.levelIdx + 1} de ${g.cfg.levels.length}: construye torres y pulsa "Iniciar oleada".`);
-    g.ui.startBtn(true);
+  canStart = true; canBuild = true;
+  enter(g) { this.left = g.cfg.prepTime; this.shown = null; g.ui.startBtn(true); }
+  update(g, dt) {
+    super.update(g, dt);
+    this.left -= dt;
+    const s = Math.max(0, Math.ceil(this.left));
+    if (s !== this.shown) {
+      this.shown = s;
+      g.ui.msg(`Nivel ${g.levelIdx + 1} de ${g.cfg.levels.length}: construye tus torres. La oleada empieza en ${s} s (o pulsa "Iniciar oleada").`);
+    }
+    if (this.left <= 0) g.startWave();
   }
 }
 export class WaveState extends PlayingState {
-  enter(g) { this.queue = g.buildSpawnQueue(); this.t = 0; g.ui.startBtn(false); g.ui.msg("¡Oleada en curso!"); }
+  enter(g) { this.queue = g.buildSpawnQueue(); this.t = 0; g.ui.startBtn(false); g.ui.msg("¡Oleada en curso! Construcción bloqueada."); }
   update(g, dt) {
     this.t += dt;
     while (this.queue.length && this.queue[0].t <= this.t) g.spawn(this.queue.shift().type);
