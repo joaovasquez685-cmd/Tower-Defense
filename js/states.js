@@ -32,7 +32,7 @@ export class PreparationState extends PlayingState {
     const s = Math.max(0, Math.ceil(this.left));
     if (s !== this.shown) {
       this.shown = s;
-      g.ui.msg(`Nivel ${g.levelIdx + 1} de ${g.cfg.levels.length}: construye tus torres. La oleada empieza en ${s} s (o pulsa "Iniciar oleada").`);
+      g.ui.msg(`Nivel ${g.levelIdx + 1} de ${g.cfg.levels.length}: torres ${g.towers.length}/${g.cfg.maxTowers}. La oleada empieza en ${s} s (o pulsa "Iniciar oleada").`);
     }
     if (this.left <= 0) g.startWave();
   }
