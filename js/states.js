@@ -25,7 +25,7 @@ class PlayingState extends State {
 }
 export class PreparationState extends PlayingState {
   canStart = true; canBuild = true;
-  enter(g) { this.left = g.cfg.prepTime; this.shown = null; g.ui.startBtn(true); }
+  enter(g) { this.left = g.level.prep ?? g.cfg.prepTime; this.shown = null; g.ui.startBtn(true); }
   update(g, dt) {
     super.update(g, dt);
     this.left -= dt;
