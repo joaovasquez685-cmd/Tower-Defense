@@ -57,9 +57,11 @@ export class Game {
     const id = this.selected;
     if (!id) return this.ui.msg("Elige primero una torre.");
     const c = this.cfg.towers[id];
+    if (this.towers.length >= this.cfg.maxTowers) return this.ui.msg(`Llegaste al máximo de torres (${this.cfg.maxTowers}).`);
     if (this.gold < c.cost) return this.ui.msg("Oro insuficiente.");
     if (!this.canPlace(x, y)) return this.ui.msg("No puedes construir ahí.");
     this.gold -= c.cost; this.towers.push(this.towerF.create(id, { x, y })); this.bus.emit("stats");
+    this.ui.msg(`Torres: ${this.towers.length}/${this.cfg.maxTowers}`);
   }
   useAbility(id) {
     const a = this.cfg.abilities[id];
